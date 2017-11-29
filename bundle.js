@@ -10627,50 +10627,50 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function email(input) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return !input || re.test(input) ? undefined : 'Please enter a valid email';
+  return !input || re.test(input) ? undefined : '请输入正确的邮件地址';
 }
 
 function required(value) {
   var empty = typeof value !== 'number' && !value;
-  return empty ? 'Required field' : undefined;
+  return empty ? '必填项目' : undefined;
 }
 
 function notEmpty(arr) {
   if (!Array.isArray(arr) || !arr.length) {
-    return 'This field must not be empty';
+    return '此项不能为空';
   }
 }
 
 function simpleText(value) {
-  return value && !value.match(/^[0-9a-zA-Z_]{1,64}$/) ? 'Only use characters (a-z, A-Z, 0-9, _)' : undefined;
+  return value && !value.match(/^[0-9a-zA-Z_]{1,64}$/) ? '只能使用合法字符 (a-z, A-Z, 0-9, _)' : undefined;
 }
 
 function number(value) {
-  return value && (isNaN(Number(value)) || +value < 0) ? 'This field must be a positive number' : undefined;
+  return value && (isNaN(Number(value)) || +value < 0) ? '此项必须为正数' : undefined;
 }
 
 function minValue(min) {
   return function (value) {
-    return value && value < min ? 'The value must be greater than ' + min : undefined;
+    return value && value < min ? '此项必须大于 ' + min : undefined;
   };
 }
 
 function maxValue(max) {
   return function (value) {
-    return value && value > max ? 'The value must be less than ' + max : undefined;
+    return value && value > max ? '此项必须小于 ' + max : undefined;
   };
 }
 
 function fullName(value) {
   return value && value.split(' ').filter(function (x) {
     return x !== '';
-  }).length < 2 ? 'Please enter a valid full name (firstname + lastname)' : undefined;
+  }).length < 2 ? '请输入正确的全名 (姓 + 名)' : undefined;
 }
 
 function unique(candidates) {
   return function (value) {
     if (candidates.indexOf(value) !== -1) {
-      return 'This value already exists and must be unique';
+      return '该值已存在且必须是唯一的';
     }
     return undefined;
   };
@@ -10678,11 +10678,11 @@ function unique(candidates) {
 
 function date(val) {
   var d = new Date(val);
-  return isNaN(d.getTime()) ? 'Required date' : undefined;
+  return isNaN(d.getTime()) ? '需要日期' : undefined;
 }
 
 function time24(val) {
-  var msg = 'Invalid time';
+  var msg = '无效时间';
   if (!Helpers.isValidTime(val)) {
     return msg;
   }
@@ -23501,7 +23501,7 @@ function createProfile(name, description) {
   var settings = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Profile created'));
+    dispatch((0, _notification2.default)('配置文件已创建'));
     dispatch({
       type: types.PROFILE_CREATE,
       name: name,
@@ -23513,7 +23513,7 @@ function createProfile(name, description) {
 
 function setProfileEnabled(name) {
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Profile set to ' + name));
+    dispatch((0, _notification2.default)('配置文件设置为 ' + name));
     dispatch({
       type: types.PROFILE_SET_ENABLED,
       name: name
@@ -23523,7 +23523,7 @@ function setProfileEnabled(name) {
 
 function removeProfile(name) {
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Profile deleted'));
+    dispatch((0, _notification2.default)('配置文件已删除'));
     dispatch({
       type: types.PROFILE_REMOVE,
       name: name
@@ -23533,7 +23533,7 @@ function removeProfile(name) {
 
 function updateProfileSettings(profileName, shop, key, value) {
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Settings saved'));
+    dispatch((0, _notification2.default)('配置已保存'));
     var obj = {};
     obj[key] = value;
     dispatch({
@@ -47623,7 +47623,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function addAtcProduct(data) {
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Atc product ' + data.name + ' added'));
+    dispatch((0, _notification2.default)('自动巡逻单品 ' + data.name + ' 已添加'));
     dispatch({
       type: types.ATC_PRODUCT_ADD,
       name: name,
@@ -47634,7 +47634,7 @@ function addAtcProduct(data) {
 
 function editAtcProduct(name, data) {
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Atc product ' + name + ' edited'));
+    dispatch((0, _notification2.default)('自动巡逻单品 ' + name + ' 已修改'));
     dispatch({
       type: types.ATC_PRODUCT_EDIT,
       name: name,
@@ -47645,7 +47645,7 @@ function editAtcProduct(name, data) {
 
 function removeAtcProduct(name) {
   return function (dispatch) {
-    dispatch((0, _notification2.default)('Atc product ' + name + ' removed'));
+    dispatch((0, _notification2.default)('自动巡逻单品 ' + name + ' 已移除'));
     dispatch({
       type: types.ATC_PRODUCT_REMOVE,
       name: name
@@ -47993,35 +47993,35 @@ var AtcCreateForm = function (_Component) {
         _react2.default.createElement(
           'p',
           { style: { fontSize: '0.8em' } },
-          'ATC Product description is only used to differentiate different ATC products, it doesn\'t have any effect on the Autocop process.'
+          '自动巡逻单品描述仅仅用于区分不同的自动巡逻单品， 不会\'对结果产生任何影响'
         ),
         _react2.default.createElement(
           'p',
           { style: { fontSize: '0.8em' } },
-          'Keywords is the most important information to find a product for Autocop, make sure to add detailed keywords. For example for a Box Logo add the following keywords: box, logo, hoodie.'
+          '关键字是搜索添加单品最重要的信息, 请确保输入详细的关键字. 例如BOX LOGO请添加 box, logo, hoodie.'
         ),
         _react2.default.createElement(
           'p',
           { style: { fontSize: '0.8em' } },
-          'You can also add negative keywords by prepending a ',
+          '你也可以通过添加否定符号 ',
           _react2.default.createElement(
             'b',
             null,
             '"!"'
           ),
-          ' to a keyword, for example the keywords "',
+          ' 来添加否定关键字，例如 "',
           _react2.default.createElement(
             'b',
             null,
             'box logo !longsleeve tee'
           ),
-          '" will match a product like ',
+          '" 会添加单品 ',
           _react2.default.createElement(
             'b',
             null,
             '"Box Logo Tee"'
           ),
-          ' but not ',
+          ' 而不是 ',
           _react2.default.createElement(
             'b',
             null,
@@ -48031,18 +48031,18 @@ var AtcCreateForm = function (_Component) {
         _react2.default.createElement(
           'p',
           { style: { fontSize: '0.8em' } },
-          'If you do not select a size, AutoCop will choose the size you selected in the ',
+          '如果你没有选择码数, 自动巡逻将会使用你在 ',
           _react2.default.createElement(
             'b',
             null,
-            '"Sizings"'
+            '"尺码"'
           ),
-          ' tab.'
+          ' 中的设置'
         ),
         this.state.matchedProducts.length > 0 && _react2.default.createElement(
           'p',
           { style: { color: _colors.orange400, fontSize: '0.9em' } },
-          'Warning! Your keywords already matches with the following products from the store, click on the bin to ignore unwanted products:',
+          '警告! 关键字已与商店中的以下产品匹配，请点击垃圾箱以忽略不需要的产品：',
           _react2.default.createElement(
             'ul',
             null,
@@ -48059,7 +48059,7 @@ var AtcCreateForm = function (_Component) {
                     onTouchTap: function onTouchTap() {
                       return _this3.addIgnoreKeyword(x);
                     },
-                    tooltip: 'Add negative keywords to ignore'
+                    tooltip: '添加否定关键字来忽略'
                   },
                   _react2.default.createElement(_delete2.default, null)
                 )
@@ -48070,7 +48070,7 @@ var AtcCreateForm = function (_Component) {
         this.state.matchedDropProducts.length > 1 && _react2.default.createElement(
           'p',
           { style: { color: _colors.blue400, fontSize: '0.9em' } },
-          'Warning! Your keywords matches with multiple products from the incoming drop, click on the bin to ignore unwanted products:',
+          '警告! 关键字已与即将发售的多个新品匹配，请点击垃圾箱以忽略不需要的产品',
           _react2.default.createElement(
             'ul',
             null,
@@ -48087,7 +48087,7 @@ var AtcCreateForm = function (_Component) {
                     onTouchTap: function onTouchTap() {
                       return _this3.addIgnoreKeyword(x);
                     },
-                    tooltip: 'Add negative keywords to ignore'
+                    tooltip: '添加否定关键字来忽略'
                   },
                   _react2.default.createElement(_delete2.default, null)
                 )
@@ -48101,7 +48101,7 @@ var AtcCreateForm = function (_Component) {
           _react2.default.createElement(
             'p',
             null,
-            'The keywords will match the following product from the incoming drop:'
+            '关键字将于以下新品匹配'
           ),
           _react2.default.createElement(
             'ul',
@@ -48123,8 +48123,8 @@ var AtcCreateForm = function (_Component) {
               name: 'name',
               validate: formValidators,
               component: _reduxFormMaterialUi.TextField,
-              floatingLabelText: 'ATC Product description',
-              hintText: 'ATC Product description',
+              floatingLabelText: '自动巡逻单品描述',
+              hintText: '自动巡逻单品描述',
               style: _Styles2.default.fields.text
             })
           ),
@@ -48134,8 +48134,8 @@ var AtcCreateForm = function (_Component) {
             _react2.default.createElement(_reduxForm.Field, {
               name: 'keywords',
               component: renderChip,
-              floatingLabelText: 'Product keywords, press enter to validate a keyword',
-              hintText: 'Product keywords',
+              floatingLabelText: '单品关键字，按回车来添加多个关键字',
+              hintText: '单品关键字',
               style: _Styles2.default.fields.text,
               labelStyle: _Styles2.default.fields.text,
               validate: [Validators.required, Validators.notEmpty],
@@ -48155,8 +48155,8 @@ var AtcCreateForm = function (_Component) {
             _react2.default.createElement(_reduxForm.Field, {
               name: 'color',
               component: _reduxFormMaterialUi.TextField,
-              floatingLabelText: 'Color',
-              hintText: 'Color',
+              floatingLabelText: '颜色',
+              hintText: '颜色',
               style: _Styles2.default.fields.text
             })
           ),
@@ -48168,7 +48168,7 @@ var AtcCreateForm = function (_Component) {
               {
                 name: 'category',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Product category',
+                floatingLabelText: '单品类别',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required],
                 onChange: function onChange(i, v) {
@@ -48190,7 +48190,7 @@ var AtcCreateForm = function (_Component) {
               {
                 name: 'size',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Product size',
+                floatingLabelText: '单品尺码',
                 style: _Styles2.default.fields.text
               },
               [_react2.default.createElement(_MenuItem2.default, { value: null, primaryText: '' })].concat((0, _toConsumableArray3.default)(getSizeForCategory(this.state.category || initialValues.category).map(function (x) {
@@ -48207,14 +48207,14 @@ var AtcCreateForm = function (_Component) {
                 name: 'retryCount',
                 validate: [Validators.required],
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Action if the product is not found',
-                hintText: 'Action if the product is not found',
+                floatingLabelText: '单品未找到后的动作...',
+                hintText: '单品未找到后的动作...',
                 style: _Styles2.default.fields.text
               },
-              _react2.default.createElement(_MenuItem2.default, { value: 'inf', primaryText: 'Keep refreshing until the product is found' }),
-              _react2.default.createElement(_MenuItem2.default, { value: 'skip', primaryText: 'Skip to next Autocop product' }),
+              _react2.default.createElement(_MenuItem2.default, { value: 'inf', primaryText: '保持刷新直到单品被找到' }),
+              _react2.default.createElement(_MenuItem2.default, { value: 'skip', primaryText: '跳过到下一个单品' }),
               Array.apply(null, new Array(5)).map(function (x, i) {
-                return _react2.default.createElement(_MenuItem2.default, { key: (i + 1) * 5, value: (i + 1) * 5, primaryText: 'Refresh ' + (i + 1) * 5 + ' times' });
+                return _react2.default.createElement(_MenuItem2.default, { key: (i + 1) * 5, value: (i + 1) * 5, primaryText: '刷新 ' + (i + 1) * 5 + ' 次' });
               })
             )
           ),
@@ -48227,14 +48227,14 @@ var AtcCreateForm = function (_Component) {
                 name: 'soldOutAction',
                 validate: [Validators.required],
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Action if the product is sold out',
-                hintText: 'Action if the product is sold out',
+                floatingLabelText: '单品售罄后的动作...',
+                hintText: '单品售罄后的动作...',
                 style: _Styles2.default.fields.text
               },
-              _react2.default.createElement(_MenuItem2.default, { value: 'skip', primaryText: 'Skip to next Autocop product' }),
-              _react2.default.createElement(_MenuItem2.default, { value: 'inf', primaryText: 'Keep refreshing until the product restocks' }),
+              _react2.default.createElement(_MenuItem2.default, { value: 'skip', primaryText: '跳过到下一个单品' }),
+              _react2.default.createElement(_MenuItem2.default, { value: 'inf', primaryText: '保持刷新直到单品补货' }),
               Array.apply(null, new Array(5)).map(function (x, i) {
-                return _react2.default.createElement(_MenuItem2.default, { key: (i + 1) * 5, value: (i + 1) * 5, primaryText: 'Refresh ' + (i + 1) * 5 + ' times' });
+                return _react2.default.createElement(_MenuItem2.default, { key: (i + 1) * 5, value: (i + 1) * 5, primaryText: '刷新 ' + (i + 1) * 5 + ' 次' });
               })
             )
           ),
@@ -48245,7 +48245,7 @@ var AtcCreateForm = function (_Component) {
             _react2.default.createElement(_reduxForm.Field, {
               name: 'enabled',
               component: _reduxFormMaterialUi.Toggle,
-              label: 'Enabled',
+              label: '可用',
               style: _Styles2.default.fields.text
             })
           ),
@@ -48253,13 +48253,13 @@ var AtcCreateForm = function (_Component) {
             'div',
             null,
             _react2.default.createElement(_RaisedButton2.default, {
-              label: 'Add',
+              label: '添加',
               style: buttonStyle,
               disabled: pristine || submitting,
               type: 'submit'
             }),
             _react2.default.createElement(_FlatButton2.default, {
-              label: 'Cancel',
+              label: '取消',
               style: buttonStyle,
               onTouchTap: function onTouchTap() {
                 if (onRequestClose) {
@@ -48551,7 +48551,7 @@ var ProductList = function (_Component) {
             _react2.default.createElement(
               'p',
               null,
-              'Loading...'
+              '载入中...'
             ),
             _react2.default.createElement(_CircularProgress2.default, null)
           )
@@ -48925,7 +48925,7 @@ var LocalChangeSelect = function (_Component) {
       var _this2 = this;
 
       if (this.state.locale === newLocale) return;
-      this.props.notify('Store location changed to ' + newLocale);
+      this.props.notify('商店地址已改为 ' + newLocale);
       _StorageService2.default.setItem('locale', newLocale).then(function () {
         return _StorageService2.default.setItem('stock', []);
       }).then(function () {
@@ -48945,7 +48945,7 @@ var LocalChangeSelect = function (_Component) {
         _react2.default.createElement(
           _SelectField2.default,
           {
-            floatingLabelText: 'Supreme shop location',
+            floatingLabelText: 'Supreme 官网地址',
             value: this.state.locale,
             style: { textAlign: 'justify' },
             onChange: function onChange(e, i, v) {
@@ -80629,7 +80629,7 @@ var AppDrawer = function (_Component) {
           { style: _Styles2.default.logo, onClick: function onClick() {
               return openUrlInNewTab('https://github.com/val92130/Supreme-Auto-Checkout');
             } },
-          'Supreme Auto Checkout',
+          'Supreme Bot China',
           _react2.default.createElement(
             'span',
             null,
@@ -80643,7 +80643,7 @@ var AppDrawer = function (_Component) {
           _react2.default.createElement(
             _Subheader2.default,
             null,
-            'Shops'
+            '官网'
           ),
           _react2.default.createElement(_List.ListItem, {
             value: 'supreme',
@@ -80661,50 +80661,51 @@ var AppDrawer = function (_Component) {
               key: 1,
               containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/supreme/configuration' }),
               value: 'supreme/configuration',
-              primaryText: 'Configuration',
+              primaryText: '配置信息',
               leftIcon: isIncomplete(settings, 'Supreme') ? _react2.default.createElement(_error2.default, null) : _react2.default.createElement(_settings2.default, null)
             }), _react2.default.createElement(_List.ListItem, {
               key: 2,
               value: 'supreme/autocop',
               containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/supreme/autocop' }),
-              primaryText: 'AutoCop',
+              primaryText: '自动巡逻',
               leftIcon: _react2.default.createElement(_addShoppingCart2.default, null)
             }), _react2.default.createElement(_List.ListItem, {
               key: 3,
               value: 'supreme/products',
               containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/supreme/products' }),
-              primaryText: 'Product listing',
+              primaryText: '商品列表',
               leftIcon: _react2.default.createElement(_viewList2.default, null)
             }), _react2.default.createElement(_List.ListItem, {
               key: 4,
               value: 'supreme/drops',
               containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/supreme/drops' }),
-              primaryText: 'Drops',
+              primaryText: '发售信息',
               leftIcon: _react2.default.createElement(_shoppingCart2.default, null)
             }), _react2.default.createElement(_List.ListItem, {
               key: 5,
               value: 'supreme/restocks',
               containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/supreme/restocks' }),
-              primaryText: 'Restocks',
+              primaryText: '补货监控',
               leftIcon: _react2.default.createElement(_alarm2.default, null)
             })]
           }),
           _react2.default.createElement(
             _Subheader2.default,
             null,
-            'Other'
+            '其他'
           ),
           _react2.default.createElement(_List.ListItem, {
             value: 'profiles',
-            primaryText: 'Profiles (' + currentProfile + ')',
+            primaryText: '用户数据 (' + currentProfile + ')',
             containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/profiles/' }),
             leftIcon: _react2.default.createElement(_accountCircle2.default, null)
           }),
           _react2.default.createElement(_List.ListItem, {
             value: 'donation',
-            primaryText: 'Donation',
+            primaryText: '捐赠',
             onTouchTap: function onTouchTap() {
               return openUrlInNewTab('https://www.paypal.me/vchatelain');
+              return openUrlInNewTab('https://www.alipay.com');
             },
             leftIcon: _react2.default.createElement(_payment2.default, null)
           })
@@ -85859,7 +85860,7 @@ var Supreme = function (_Component) {
 
       return [_react2.default.createElement(_Tab2.default, {
         style: Styles.tab,
-        label: 'Billing',
+        label: '付款',
         key: 1,
         icon: this.getIconForTabMenu(menus.MENU_BILLING),
         value: menus.MENU_BILLING,
@@ -85867,7 +85868,7 @@ var Supreme = function (_Component) {
           return _this3.props.changeMenu(menus.MENU_BILLING);
         }
       }), _react2.default.createElement(_Tab2.default, {
-        label: 'Options',
+        label: '设置',
         key: 2,
         icon: this.getIconForTabMenu(menus.MENU_OPTIONS),
         value: menus.MENU_OPTIONS,
@@ -85875,7 +85876,7 @@ var Supreme = function (_Component) {
           return _this3.props.changeMenu(menus.MENU_OPTIONS);
         }
       }), _react2.default.createElement(_Tab2.default, {
-        label: 'Sizes',
+        label: '尺码',
         key: 3,
         icon: this.getIconForTabMenu(menus.MENU_SIZES),
         value: menus.MENU_SIZES,
@@ -85891,7 +85892,7 @@ var Supreme = function (_Component) {
 
       return _react2.default.createElement(
         _Layout2.default,
-        { title: menu || 'Loading...', tabs: this.getTabs(), currentTab: menu || menus.MENU_BILLING },
+        { title: menu || '载入中...', tabs: this.getTabs(), currentTab: menu || menus.MENU_BILLING },
         this.getContainerForMenu(menu)
       );
     }
@@ -86236,7 +86237,7 @@ var Billing = function Billing(props) {
     _react2.default.createElement(
       'p',
       { style: { textAlign: 'center', fontSize: '1.2em' } },
-      'Configure your billing infos'
+      '配置付款信息'
     ),
     _react2.default.createElement(_Divider2.default, null),
     _react2.default.createElement(
@@ -86249,8 +86250,8 @@ var Billing = function Billing(props) {
           name: 'order_billing_name',
           validate: Validators.fullName,
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Firstname and Lastname',
-          hintText: 'Firstname and Lastname',
+          floatingLabelText: '姓名',
+          hintText: '姓和名中间请使用空格分离',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86260,8 +86261,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'order_email',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Email',
-          hintText: 'Email',
+          floatingLabelText: '电子邮件',
+          hintText: '电子邮件',
           style: _Styles2.default.fields.text,
           validate: [Validators.email]
         })
@@ -86272,8 +86273,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'order_tel',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Phone number',
-          hintText: 'Phone number',
+          floatingLabelText: '手机号码',
+          hintText: '手机号码',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86283,8 +86284,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'bo',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Address',
-          hintText: 'Address',
+          floatingLabelText: '地址',
+          hintText: '地址',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86294,8 +86295,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'oba3',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Address 2',
-          hintText: 'Address 2',
+          floatingLabelText: '地址 2',
+          hintText: '地址 2',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86305,8 +86306,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'order_billing_city',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'City',
-          hintText: 'City',
+          floatingLabelText: '城市',
+          hintText: '城市',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86318,8 +86319,8 @@ var Billing = function Billing(props) {
           {
             name: 'order_billing_country',
             component: _reduxFormMaterialUi.SelectField,
-            floatingLabelText: 'Country',
-            hintText: 'Country',
+            floatingLabelText: '国家',
+            hintText: '国家',
             style: _Styles2.default.fields.text
           },
           Utils.countries.map(function (x) {
@@ -86332,8 +86333,8 @@ var Billing = function Billing(props) {
         {
           name: 'order_billing_state',
           component: _reduxFormMaterialUi.SelectField,
-          floatingLabelText: 'State',
-          hintText: 'State',
+          floatingLabelText: '州',
+          hintText: '州',
           style: _Styles2.default.fields.text
         },
         getStatesForCountry(country).map(function (x) {
@@ -86346,7 +86347,7 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'order_billing_zip',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Zip',
+          floatingLabelText: '邮政编码',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86358,7 +86359,7 @@ var Billing = function Billing(props) {
           {
             name: 'credit_card_type',
             component: _reduxFormMaterialUi.SelectField,
-            floatingLabelText: 'Credit card type',
+            floatingLabelText: '信用卡类型',
             style: _Styles2.default.fields.text
           },
           getCreditCardsForCountry(country).map(function (x) {
@@ -86372,8 +86373,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'cnb',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Credit Card Number',
-          hintText: 'Credit Card Number',
+          floatingLabelText: '信用卡号码',
+          hintText: '信用卡号码',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86385,8 +86386,8 @@ var Billing = function Billing(props) {
           {
             name: 'credit_card_month',
             component: _reduxFormMaterialUi.SelectField,
-            floatingLabelText: 'Expiry month',
-            hintText: 'Expiry month',
+            floatingLabelText: '信用卡过期月份',
+            hintText: '信用卡过期月份',
             style: _Styles2.default.fields.text
           },
           Array.apply(null, new Array(12)).map(function (x, i) {
@@ -86403,8 +86404,8 @@ var Billing = function Billing(props) {
           {
             name: 'credit_card_year',
             component: _reduxFormMaterialUi.SelectField,
-            floatingLabelText: 'Expiry year',
-            hintText: 'Expiry year',
+            floatingLabelText: '信用卡过期年份',
+            hintText: '信用卡过期年份',
             style: _Styles2.default.fields.text
           },
           Array.apply(null, new Array(10)).map(function (x, i) {
@@ -86419,8 +86420,8 @@ var Billing = function Billing(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'vval',
           component: _reduxFormMaterialUi.TextField,
-          hintText: 'CCV',
-          floatingLabelText: 'CCV',
+          hintText: 'CCV安全码',
+          floatingLabelText: 'CCV安全码',
           style: _Styles2.default.fields.text
         })
       ),
@@ -86428,7 +86429,7 @@ var Billing = function Billing(props) {
         'div',
         null,
         _react2.default.createElement(_RaisedButton2.default, {
-          label: 'Save',
+          label: '保存',
           disabled: pristine || submitting,
           type: 'submit'
         })
@@ -97522,7 +97523,7 @@ var Options = function Options(props) {
     _react2.default.createElement(
       'p',
       { style: { textAlign: 'center', fontSize: '1.2em' } },
-      'Configure options and features of the bot'
+      '配置机器人功能与设置'
     ),
     _react2.default.createElement(_Divider2.default, null),
     _react2.default.createElement(
@@ -97537,17 +97538,17 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Enable Auto Checkout',
+          title: '自动加入购物车',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'Autocheckout will automatically add to cart a product whenever you click on a product page and automatically fill the checkout form using the informations in the "Billing" tab.',
+              '当点击进入一个商品页面时，自动加入购物车功能会自动使用付已配置好的付款信息加入购物车',
               _react2.default.createElement('br', null),
               _react2.default.createElement('br', null),
-              'The product will be added to cart using the sizes you chose in the "Sizes" tab.'
+              '同样地，会使用已经配置好的尺码信息加入购物车'
             )
           )
         })
@@ -97561,16 +97562,16 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Enable Auto Payment',
+          title: '自动支付',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'Autopayment option will automatically click the "Process payment" button in the checkout form.',
+              '自动支付功能将会自动点击“处理支付”按钮',
               _react2.default.createElement('br', null),
-              'Autocheckout must be enabled otherwise this option will not have any effect.'
+              '自动支付功能必须处于开启状态，否则将无法正常运行插件功能'
             )
           )
         })
@@ -97584,14 +97585,14 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Enable strict size checking',
+          title: '尺码检查',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'If this option is enabled a product will not be added to the cart unless the selected size from the "Sizes" tab is available.'
+              '如果尺码检查功能处于开启状态，那么商品只有与尺码配置匹配时才会自动加入购物车'
             )
           )
         })
@@ -97605,14 +97606,14 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Hide sold out products',
+          title: '隐藏无货商品',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'This option will hide sold out products from the Supreme online shop.'
+              '此选项将会隐藏SUPREME官网所有SOLD OUT商品'
             )
           )
         })
@@ -97626,14 +97627,14 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Display restock notifications',
+          title: '补货通知',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'If this option is enabled you will receive a notification whenever a product restocks or land on the shop.'
+              '如果此选项处于开启状态，那么当补货时你会收到通知'
             )
           )
         })
@@ -97647,17 +97648,17 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Use product monitor for AutoCop',
+          title: '自动巡逻单品监视',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'A process in the background periodically fetches products from the Supreme mobile api, if you use this option Autocop will try to find products based on the products from this API.',
+              '通过处理SUPREME移动网页背景接口API来监视商品, 如果开启本功能，自动巡逻会尝试通过单品数据接口来添加单品',
               _react2.default.createElement('br', null),
               _react2.default.createElement('br', null),
-              'This is required for countries where product\'s names aren\'t displayed on the Supreme website like Japan.'
+              '这个功能是为了给某些国家的\'SUPREME官网\'例如东京官网不显示单品名称'
             )
           )
         })
@@ -97671,14 +97672,14 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Disable images loading',
+          title: '屏蔽图片加载',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'If enabled, images will not be loaded on the Supreme website, this can improve speed.'
+              '如果此选项处于开启状态，那么不会加载图片，尤其在抢购期间网络压力大，这有助于提高速度'
             )
           )
         })
@@ -97692,18 +97693,18 @@ var Options = function Options(props) {
             component: _reduxFormMaterialUi.Toggle,
             style: { width: 'auto' }
           }),
-          title: 'Enable AutoCop timer',
+          title: '自动巡逻计时器',
           helperText: _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'p',
               null,
-              'AutoCop is a feature that will automatically try to buy your desired products at a specific time.',
+              '自动巡逻是一个自动尝试把欲购买的单品在特定时间自动加入购物车的功能',
               _react2.default.createElement('br', null),
               ' ',
               _react2.default.createElement('br', null),
-              'Once AutoCop is triggered at the end of the timer, a tab with the Supreme shop will be opened for every products you have defined in the "Autocop" page and automatically add them to the cart if they are found.'
+              '一旦自动巡逻功能在计时结束后被触发, 所有你在自动巡逻中添加符合描述的单品SUPREME官网页面会被打开并自动尝试加入购物车'
             )
           )
         })
@@ -97714,16 +97715,16 @@ var Options = function Options(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'atcStartTime',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'ATC Start time (hh:mm:ss) 24hour format',
-          hintText: 'ATC Start time',
+          floatingLabelText: '自动巡逻开始时间 (时时:分分:秒秒) 24小时制',
+          hintText: '自动巡逻开始时间',
           style: _Styles2.default.fields.text,
           validate: [Validators.required, Validators.time24]
         }),
         _react2.default.createElement(_reduxForm.Field, {
           name: 'atcStartDate',
           component: _reduxFormMaterialUi.DatePicker,
-          floatingLabelText: 'ATC Start date',
-          hintText: 'ATC Start date',
+          floatingLabelText: '自动巡逻开始日期',
+          hintText: '自动巡逻开始日期',
           style: _Styles2.default.fields.text,
           textFieldStyle: _Styles2.default.fields.text,
           validate: [Validators.required]
@@ -97738,13 +97739,13 @@ var Options = function Options(props) {
             name: 'onCartSoldOut',
             component: _reduxFormMaterialUi.SelectField,
             label: 'Action when out of stock in cart...',
-            floatingLabelText: 'Action when out of stock in cart...',
-            hintText: 'Action when out of stock in cart...',
+            floatingLabelText: '加入购物车商品售罄后动作...',
+            hintText: '加入购物车商品售罄后动作...',
             style: _Styles2.default.fields.text,
             validate: Validators.required
           },
-          _react2.default.createElement(_MenuItem2.default, { key: SupremeUtils.OnSoldOutCartActions.REMOVE_SOLD_OUT_PRODUCTS, value: SupremeUtils.OnSoldOutCartActions.REMOVE_SOLD_OUT_PRODUCTS, primaryText: 'Remove sold out products' }),
-          _react2.default.createElement(_MenuItem2.default, { key: SupremeUtils.OnSoldOutCartActions.STOP, value: SupremeUtils.OnSoldOutCartActions.STOP, primaryText: 'Stop auto-checkout' })
+          _react2.default.createElement(_MenuItem2.default, { key: SupremeUtils.OnSoldOutCartActions.REMOVE_SOLD_OUT_PRODUCTS, value: SupremeUtils.OnSoldOutCartActions.REMOVE_SOLD_OUT_PRODUCTS, primaryText: '移除售罄单品' }),
+          _react2.default.createElement(_MenuItem2.default, { key: SupremeUtils.OnSoldOutCartActions.STOP, value: SupremeUtils.OnSoldOutCartActions.STOP, primaryText: '停止自动付款' })
         )
       ),
       _react2.default.createElement(
@@ -97753,8 +97754,8 @@ var Options = function Options(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'addToCartDelay',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Add to cart delay (ms)',
-          hintText: 'Add to cart delay (ms)',
+          floatingLabelText: '自动加入购物车延时 (ms)',
+          hintText: '防止被判定为机器人，建议300ms或以上 (ms)',
           style: _Styles2.default.fields.text,
           validate: [Validators.required, Validators.number]
         })
@@ -97765,8 +97766,8 @@ var Options = function Options(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'checkoutDelay',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Checkout delay (ms)',
-          hintText: 'Checkout delay (ms)',
+          floatingLabelText: '自动付款延时 (ms)',
+          hintText: '防止判定为机器人，建议2000ms或以上 (ms)',
           style: _Styles2.default.fields.text,
           validate: [Validators.required, Validators.number]
         })
@@ -97777,8 +97778,8 @@ var Options = function Options(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'maxPrice',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Maximum product price',
-          hintText: 'Maximum product price',
+          floatingLabelText: '单品价格上限',
+          hintText: '单品价格上限',
           style: _Styles2.default.fields.text,
           validate: [Validators.required, Validators.number]
         })
@@ -97789,8 +97790,8 @@ var Options = function Options(props) {
         _react2.default.createElement(_reduxForm.Field, {
           name: 'minPrice',
           component: _reduxFormMaterialUi.TextField,
-          floatingLabelText: 'Minimum product price',
-          hintText: 'Minimum product price',
+          floatingLabelText: '单品价格下限',
+          hintText: '单品价格下限',
           style: _Styles2.default.fields.text,
           validate: [Validators.required, Validators.number]
         })
@@ -97799,7 +97800,7 @@ var Options = function Options(props) {
         'div',
         null,
         _react2.default.createElement(_RaisedButton2.default, {
-          label: 'Save',
+          label: '保存',
           disabled: pristine || submitting,
           type: 'submit'
         })
@@ -98003,7 +98004,7 @@ var Sizes = function (_Component) {
         _react2.default.createElement(
           'p',
           { style: { textAlign: 'center', fontSize: '1.2em' } },
-          'Configure your desired sizes'
+          '配置尺码信息'
         ),
         _react2.default.createElement(
           'div',
@@ -98012,7 +98013,7 @@ var Sizes = function (_Component) {
             onTouchTap: function onTouchTap() {
               return _this2.handleSetAny();
             },
-            label: 'Use any size for all'
+            label: '任意尺码'
           })
         ),
         _react2.default.createElement(_Divider2.default, null),
@@ -98027,8 +98028,8 @@ var Sizes = function (_Component) {
               {
                 name: 'accessories',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Accessories',
-                hintText: 'Accessories',
+                floatingLabelText: '配件/饰品',
+                hintText: '配件/饰品',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98045,8 +98046,8 @@ var Sizes = function (_Component) {
               {
                 name: 't-shirts',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'T-Shirts',
-                hintText: 'T-Shirts',
+                floatingLabelText: '短袖',
+                hintText: '短袖',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98063,8 +98064,8 @@ var Sizes = function (_Component) {
               {
                 name: 'pants',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Pants',
-                hintText: 'Pants',
+                floatingLabelText: '裤子',
+                hintText: '裤子',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98081,8 +98082,8 @@ var Sizes = function (_Component) {
               {
                 name: 'shorts',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Shorts',
-                hintText: 'Shorts',
+                floatingLabelText: '短裤',
+                hintText: '短裤',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98099,8 +98100,8 @@ var Sizes = function (_Component) {
               {
                 name: 'sweatshirts',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Sweatshirts',
-                hintText: 'Sweatshirts',
+                floatingLabelText: '运动衫',
+                hintText: '运动衫',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98153,8 +98154,8 @@ var Sizes = function (_Component) {
               {
                 name: 'jackets',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Jackets',
-                hintText: 'Jackets',
+                floatingLabelText: '夹克',
+                hintText: '夹克',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98171,8 +98172,8 @@ var Sizes = function (_Component) {
               {
                 name: 'shoes',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Shoes',
-                hintText: 'Shoes',
+                floatingLabelText: '鞋款',
+                hintText: '鞋款',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98189,8 +98190,8 @@ var Sizes = function (_Component) {
               {
                 name: 'skate',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Skate',
-                hintText: 'Skate',
+                floatingLabelText: '滑板',
+                hintText: '滑板',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98207,8 +98208,8 @@ var Sizes = function (_Component) {
               {
                 name: 'hats',
                 component: _reduxFormMaterialUi.SelectField,
-                floatingLabelText: 'Hats',
-                hintText: 'Hats',
+                floatingLabelText: '帽子',
+                hintText: '帽子',
                 style: _Styles2.default.fields.text,
                 validate: [Validators.required]
               },
@@ -98221,7 +98222,7 @@ var Sizes = function (_Component) {
             'div',
             null,
             _react2.default.createElement(_RaisedButton2.default, {
-              label: 'Save',
+              label: '保存',
               disabled: pristine || submitting,
               type: 'submit'
             })
@@ -99561,7 +99562,7 @@ var Atc = function (_Component) {
       var atcProducts = this.props.atcProducts;
 
       var isEditing = this.state.editingAtc !== null;
-      var title = isEditing ? 'Edit ' + this.state.editingAtc.name : 'Add a new product';
+      var title = isEditing ? 'Edit ' + this.state.editingAtc.name : '添加一个新的单品';
       return _react2.default.createElement(
         _Layout2.default,
         null,
@@ -99588,18 +99589,18 @@ var Atc = function (_Component) {
           _react2.default.createElement(
             'p',
             null,
-            'Each product you add will be automatically added to your cart by the AutoCop once the timer reaches its end.'
+            '自动巡逻功能会尝试把每一个符合条件的单品加入购物车，直到计时器停止'
           ),
           _react2.default.createElement(
             'p',
             null,
-            'Click \'Run now\' to manually trigger AutoCop for a single product'
+            '点击 \'运行\' 来手动开启自动巡逻功能添加单品'
           ),
           _react2.default.createElement(
             'h3',
             null,
-            'Autocop status: ',
-            this.props.atcEnabled ? 'ENABLED' : 'DISABLED'
+            '自动巡逻 状态: ',
+            this.props.atcEnabled ? '启用' : '不可用'
           ),
           this.state.remainingTimeAtc && _react2.default.createElement(
             'h3',
@@ -99607,10 +99608,10 @@ var Atc = function (_Component) {
             'Autocop starting in: ',
             this.state.remainingTimeAtc
           ),
-          _react2.default.createElement(_RaisedButton2.default, { label: 'Add new', onTouchTap: function onTouchTap() {
+          _react2.default.createElement(_RaisedButton2.default, { label: '新建', onTouchTap: function onTouchTap() {
               return _this2.requestModalOpen();
             }, primary: true }),
-          _react2.default.createElement(_RaisedButton2.default, { label: 'Run all', onTouchTap: function onTouchTap() {
+          _react2.default.createElement(_RaisedButton2.default, { label: '运行', onTouchTap: function onTouchTap() {
               return _this2.runAll();
             } })
         ),
@@ -99627,27 +99628,27 @@ var Atc = function (_Component) {
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Name'
+                '名称'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Enabled'
+                '可用'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Run now'
+                '运行'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Edit'
+                '编辑'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Delete'
+                '删除'
               )
             )
           ),
@@ -99659,7 +99660,7 @@ var Atc = function (_Component) {
                 return _react2.default.createElement(
                   'p',
                   { style: { textAlign: 'center' } },
-                  'Click "Add new" to add a new Autocop Product"'
+                  '点击“新建”来添加一个新的自动巡逻单品'
                 );
               }
               return atcProducts.map(function (x, i) {
@@ -103457,7 +103458,7 @@ var Products = function (_Component) {
             _react2.default.createElement(
               'p',
               null,
-              'Click on a product to buy'
+              '点击购买商品'
             )
           ),
           onProductClick: this.handleBuyProduct
@@ -105215,7 +105216,7 @@ var Drops = function (_Component) {
             _react2.default.createElement(
               'p',
               null,
-              'Loading...'
+              '载入中...'
             ),
             _react2.default.createElement(_CircularProgress2.default, null)
           )
@@ -105390,7 +105391,7 @@ var Restocks = function (_Component) {
       if (!this.state.restocks) return _react2.default.createElement(
         'div',
         null,
-        'loading...'
+        '载入中...'
       );
       var items = this.state.restocks.map(function (x, i) {
         var icon = x.type === 'new' ? _react2.default.createElement(_addAlert2.default, null) : _react2.default.createElement(_restore2.default, null);
@@ -105423,7 +105424,7 @@ var Restocks = function (_Component) {
           _react2.default.createElement(
             'div',
             { style: { textAlign: 'center' } },
-            _react2.default.createElement(_RaisedButton2.default, { label: 'Clear all', onTouchTap: function onTouchTap() {
+            _react2.default.createElement(_RaisedButton2.default, { label: '全部清除', onTouchTap: function onTouchTap() {
                 return _this4.handleClearAll();
               }, primary: true })
           ),
@@ -106015,17 +106016,17 @@ var Profile = function (_Component) {
           _react2.default.createElement(
             'p',
             null,
-            'Create, import or export profiles to manage your different configurations.'
+            '创建，导入或导出不同的用户配置信息'
           ),
           _react2.default.createElement(
             'p',
             null,
             'Note: AutoCop products are independent of profiles.'
           ),
-          _react2.default.createElement(_RaisedButton2.default, { label: 'Add new', onTouchTap: function onTouchTap() {
+          _react2.default.createElement(_RaisedButton2.default, { label: '新建', onTouchTap: function onTouchTap() {
               return _this2.requestModalOpen();
             }, primary: true }),
-          _react2.default.createElement(_RaisedButton2.default, { label: 'Import', onTouchTap: function onTouchTap() {
+          _react2.default.createElement(_RaisedButton2.default, { label: '导入', onTouchTap: function onTouchTap() {
               return _this2.requestImportModalOpen();
             } })
         ),
@@ -106041,32 +106042,32 @@ var Profile = function (_Component) {
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Name'
+                '姓名'
               ),
               !_ChromeService2.default.isPopup() && _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Description'
+                '描述'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Enabled'
+                '启用'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Export'
+                '导出'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Duplicate'
+                '复制'
               ),
               _react2.default.createElement(
                 _Table.TableHeaderColumn,
                 null,
-                'Delete'
+                '删除'
               )
             )
           ),
